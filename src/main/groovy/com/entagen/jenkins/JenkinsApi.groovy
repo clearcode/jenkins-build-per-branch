@@ -22,6 +22,7 @@ class JenkinsApi {
         if (!jenkinsServerUrl.endsWith("/")) jenkinsServerUrl += "/"
         this.jenkinsServerUrl = jenkinsServerUrl
         this.restClient = new RESTClient(jenkinsServerUrl)
+        this.restClient.ignoreSSLIssues()
     }
 
     public void addBasicAuth(String jenkinsServerUser, String jenkinsServerPassword) {
@@ -204,6 +205,7 @@ class JenkinsApi {
 
 
         HTTPBuilder http = new HTTPBuilder(jenkinsServerUrl)
+        http.ignoreSSLIssues()
 
         if (requestInterceptor) {
             http.client.addRequestInterceptor(this.requestInterceptor)
